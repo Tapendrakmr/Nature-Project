@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+     <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" href="/css/Profile.css">
+</head>
+<body bgcolor="grey">
+
+    <div class="main-container">
+            <div class="header">
+                    <span class="element  img">
+                        <img src="img/logo2.png"  alt="logo" height="75px" width="75px" >
+                    </span>
+                    <span class="element heading">
+                        <h2>Nature Tour</h2>
+                    </span>
+                    <span class="element textfield">
+                        <input type="text" name="search" class="element" placeholder="Search value" ><i class="fas fa-microphone"></i>
+                    </span>
+                    <span class="element btn">
+                        <input type="submit" class="element" value='Logout' >
+                    </span>
+                 </div> 
+    </div>
+
+                <div class="user-profile-section">
+                        <div class="user-information">
+                                <div class="user-image">
+                                    <img src="/img/man.png" alt="">
+                                </div>
+                        <div class="user-detail">
+                            <p class="user-name top" style="width: 280px;">Name: {{username}}</p>
+                            <p class="user-email top" style="width: 350px;">Email: {{email}}</p>
+                            <p class="user-country top" >Country: {{country}}</p><br>
+                            <p class="user-city bottom" style="width: 280px;">City:{{city}}</p>
+                            <p class="user-mobile-number bottom" style="width: 350px;">Number: +919058485729</p>
+                            <p class="user-total-post bottom">Total Posts: {{posts}}</p>
+                        </div>
+                            </div>
+
+                        <div class="Edit-Profile">
+                            <button type="submit" class="edit-profile-btn">Edit Profile</button>
+                        </div>
+
+                    
+
+                
+            </div>
+
+            <p class="user-post-heading">User Posts</p>
+            {{!-- for post upload --}}
+                            <div class="users__posts" style="margin-left:300px;">
+                                {{!-- <div class="image">
+                                     <img src="img/man.png" alt="logo" height="50px" style="margin-left: 35px;margin-top:15px;float:left">
+                                </div>
+                                <div class="info">
+                                     <h2 style="padding-top:5px">Tapendra</h2>
+                                     <p style="margin-top: -15px; margin-left:5px">India</p>
+                                </div>
+                                
+                                <div class="paragraph">
+                                      <p >Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium velit, nobis quisquam dolores saepe, quasi quidem itaque similique id libero asperiores totam ducimus ea perspiciatis nemo labore cumque fugiat quam?</p>
+                          
+                                </div>
+                                <div class="image--video">
+                                    <img src="img/back.jpg" height="200px" width="600px;">
+                                </div>
+                
+                                 <div class="icons">
+                                     <i class="far fa-thumbs-up"></i>
+                                     <i class="fas fa-map-marked-alt"></i>
+                                 </div> --}}
+
+
+                             </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+         <script src="/js/Profile.js"></script>          
+    
+</body>
+</html>
