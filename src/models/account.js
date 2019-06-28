@@ -32,11 +32,12 @@ const userSchema=new mongoose.Schema({
        type:Number,
        default:000000
     },
-
-
     confirmation:{
         type:Boolean,
         default:false
+    },
+    image:{
+        type:Buffer
     }
 },{
     timestamps:true

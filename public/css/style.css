@@ -37,7 +37,7 @@ body{
     float: left;
     text-align: left;
     margin-left: 40px;
-    margin-top: 200px;
+    margin-top: 100px;
 }
 
 
@@ -129,13 +129,28 @@ body{
     border-bottom-left-radius:20px; 
     border-bottom-right-radius:20px; 
     }
-img{
+.image-upload{
+    border: 1px solid green;
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+    
+}
+.image-upload>img{
+    cursor: pointer;
+    box-sizing: border-box;
+}
+.image-upload>input{
+    display: none;
+}
+
+/* img{
     border: 5px solid white;
     border-radius: 55px;
     outline: 2px solid gray;
     -moz-outline-radius: 55px;
     
-}    
+}     */
 .form1 input{
   height: 40px;
   width:70%;

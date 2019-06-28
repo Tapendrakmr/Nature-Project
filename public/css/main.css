@@ -80,7 +80,8 @@ body{
 .upper-postcontent
 {
     display: inline-block;
-    width: 65%;
+    width: 68%;
+    height: 130px;
 }
 .upper-postcontent>img{
     margin-top: 20px;
@@ -90,24 +91,15 @@ body{
 .upper-postcontent>textarea{
     margin-left: 15px;
     margin-top: 10px;
-    width:70%;
+    width:60%;
     height: 60px;;
-   
-}
-.lower-postcontent
-{   height: 80px;
-    float: right; 
-    border: 1px solid blueviolet;
-    width:29%;
-}
-.lower-postcontent>button{
-    margin-top: 20px;
+    resize: none;
 }
   /* for post icon  */
-.image-upload{
+  .image-upload{
     display: inline-block;
     background-color: whitesmoke;
-    margin-left: 100px;
+    margin-left: 120px;
     width:40px;
     cursor: pointer;
 }
@@ -137,6 +129,22 @@ body{
     display: none;
    
   }
+.lower-postcontent
+{   height:130px;
+    float: right; 
+    border: 1px solid blueviolet;
+    width:31%;
+}
+.lower-postcontent>button{
+    padding: 10px 30px;
+    margin-top: 35px;
+     
+    border-radius:20px;
+    color: white;
+    background-color: rgba(33, 216, 64, 0.7); 
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 /* user post option */
 .center-area .add_post_area {
     height: 130px;
@@ -148,7 +156,7 @@ body{
 
 .main--post{
     margin-top: 10px;
-    height: 430px;
+    height: 550px;
     width: 100%;
     background: rgba(255, 255, 255, 1);
     box-shadow: 1px 1px 5px grey;
@@ -170,11 +178,14 @@ body{
     width: 100%;
     margin: 4px 35px;
 }
-.fa-thumbs-up{
+.icons{
+   margin-top: 110px;
+}
+.icons>.fa-thumbs-up{
     margin-left: 40px;
     font-size: 30px;
 }
-.fa-map-marked-alt{
+.icons>.fa-map-marked-alt{
     margin-left: 40px;
     font-size: 30px;
 }

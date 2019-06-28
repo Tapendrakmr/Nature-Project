@@ -4,6 +4,7 @@ const session = require('express-session');
 const hbs =require('hbs')
 const multer=require('multer')
 const sharp=require('sharp')
+const btoa = require('btoa')
 const bodyParser = require('body-parser')
 const Account=require('./models/account')
 const UserPost=require('./models/userpost')
@@ -28,14 +29,37 @@ hbs.registerPartials(partialsPath)
 app.use(express.static(publicDirectoryPath))
 
 
+const upload =multer({
+    limits:{
+        fileSize:10000000
+    },
+    fileFilter(req,file,cb){
+        if(!file.originalname.match(/\.(jpg|jpeg|png)$/))
+        {
+            return cb(new Error('Please upload a jpg'))
+        }
+        cb(undefined,true)
+    }
+})
+
+
 //to show the page
 app.get('/',(req,res)=>{
     res.render('Signup')
 })
 
 //fetch data and store in database
-app.post('/',async (req,res)=>{
-    const account=new Account(req.body)
+app.post('/',upload.single('UserImage'),async (req,res)=>{
+    const buffer=await sharp(req.file.buffer).resize({width:250,height:250}).png().toBuffer();
+    const UserImage=buffer;
+    const userinfo={
+        username:req.body.username,
+        email:req.body.email,
+        password:req.body.password,
+        country:req.body.country,
+        image:UserImage
+    }
+    const account=new Account(userinfo)
     try{
        await account.save()
       const otp=sendWelcomeEmail(account.email,account.username)
@@ -94,31 +118,23 @@ app.post('/Signin',async (req,res)=>{
 //Main page detail 
 app.get('/Main',async(req,res)=>{
     const email=req.session.email
+    const user=await Account.find({email})
+    const userImage =await user[0].image
+
+    let image = new Uint8Array(userImage)
     
-    var cursor=await UserPost.find();
-    // cursor.forEach(element => {
-    //     console.log(element._id+'\n'+element.userid+'\n'+element.postinfo)
-    // });
-    
+    const base = btoa(new Uint8Array(image).reduce(function (data, byte) {
+        return data + String.fromCharCode(byte)
+    },''))
     if(email)
     {
         res.render('Main',{
-            name :email
+            name :email,
+            userImage: base     
         })   
     }
 })
-const upload =multer({
-    limits:{
-        fileSize:10000000
-    },
-    fileFilter(req,file,cb){
-        if(!file.originalname.match(/\.(jpg|jpeg|png)$/))
-        {
-            return cb(new Error('Please upload a jpg'))
-        }
-        cb(undefined,true)
-    }
-})
+
 app.post('/Main',upload.single('Image'),async(req,res)=>{
  const buffer=await sharp(req.file.buffer).resize({width:250,height:250}).png().toBuffer();
  const image=buffer;
@@ -131,7 +147,10 @@ app.post('/Main',upload.single('Image'),async(req,res)=>{
      image,
      posttype
  })
- await userpost.save()
+ if( await userpost.save())
+ {
+     res.redirect('/Main')
+ }
 })
 
 // For Profile Page
@@ -170,10 +189,7 @@ app.get('/Profile/:id',async (req,res)=>{
 
 
 app.post('/logout',async (req,res) => {
-    if(!req.session.email) {
-        return res.send('You Must Login To Use Logout')
-    }
-    req.session.email = undefined
+    req.session.destroy()
     res.redirect('/Signin')
 })
 
@@ -188,12 +204,14 @@ app.get('/api/post',async (req,res)=>{
          
 
          const usern=user[0].username;
+         const userImage = user[0].image
        
         const userCountry = user[0].country        // Kaku
        // console.log(userCountry)
          return{
              usern,
              userCountry,       // Kakku
+             userImage,
              element
          }
      })

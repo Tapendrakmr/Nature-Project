@@ -1,30 +1,11 @@
-;
-function country()
-{
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-      } else { 
-        x.innerHTML = "Geolocation is not supported by this browser.";
-      }
+
+const country=async ()=>{
+  const ip=await axios('https://ipapi.co/json/')  
+ // let url_info= await axios('http://api.ipstack.com/117.225.105.152?access_key=7bf0fa755ad5c218f978e0659dd21fe2')
+ console.log(ip.data) 
+ const user_region=ip.data.region;
+  const user_country =ip.data.country_name;
+  let user=user_region+' , '+user_country;
+  document.querySelector('.country').value=user;
 }
-function showPosition(position) {
-   const lat=position.coords.latitude;
-   const long=position.coords.longitude;
-   
-   const url='https://api.darksky.net/forecast/1a533605b456afbc85ed992897d017ab/'+lat+','+long+'?';
-   console.log(url)
-  
-//    request({url,json:true},(error,{ body})=>{
-//        if(error)
-//        {
-//            callback('Unable to connect',undefined);
-//        }
-//        else if(body.error){
-//             callback('Sorry,No data availabel',undefined)
-//        }
-//        else{
-            
-//           console.log(body)
-//        }
-//    })
-  }
+

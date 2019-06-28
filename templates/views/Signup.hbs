@@ -7,7 +7,7 @@
         
         <link rel="icon" class="icon" href="img/logo2.png">
         <link rel="stylesheet" type="text/css" href="/css/style.css">
-        <script SRC="/js/signup.js"></script>
+        
      </head>
   
     <body>
@@ -20,9 +20,11 @@
                 <div class='main'>
                     <div class="content">
                       <h1> A New World of Tourist</h1>
-                      <p id="detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                        Quam necessitatibus at, culpa dignissimos delectus dolor beatae dolorem! 
-                        Quod aperiam dolores eligendi, quae saepe deserunt? Aliquam sed ex voluptatum harum sint.</p>
+                      <p id="detail">Nature refers to the physical world and all forms of life species on earth in general.
+                           Our natural ecosystem is the community of biotic and abiotic components.
+                            The biotic components are the living organisms that also include humans. 
+                            Abiotic components are the non-living components such as air, water, minerals and soil. 
+                            The biotic and abiotic components are interrelated and interact with each other through energy flow.</p>
                         <a href="#" class="btn btn--green">Read More</a>
                     </div>
                     <div class="formclass">
@@ -33,9 +35,18 @@
                       </div>
                       
                           <div class="form1">
-                              <form action="/" method="POST">
+                              <form action="/" method="POST" enctype="multipart/form-data">
                                 <br><r></r>
-                                <center><img src="img/man.png" height='100px'></center><br><br>
+                             <center> <div class="image-upload">
+                                    <label for="file-input">
+                                        <img src="img/man.png" height='100px' style="z-index: 0.8">
+                                        <i class="fas fa-camera" style="position: relative; bottom:10px"></i>
+                                    </label>
+
+                                    <input id="file-input" type="file"  name="UserImage" required/>
+                                 </div></center> 
+                                {{!-- <center><img src="img/man.png" height='100px'></center>--}}
+                                <br><br> 
                                 <i class="far fa-user"></i>
                                 <input type="text" class="username" name="username" placeholder="Username" required><br><br>
                                 <i class="far fa-envelope"></i>
@@ -53,7 +64,9 @@
                 </div>
 
        </div> 
-       
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+        <script SRC="/js/signup.js"></script>
+         
     </body>  
     
 </html>
